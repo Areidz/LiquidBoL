@@ -4,21 +4,23 @@
 --To-Do: 	Add more champions.
 --			Add some other dashes, like Leblanc or Gnar.
 --			Improve skillshot accuracy.
---Version: 1.0
+--Version: 1.0.1
 
 local champions = {	Vayne = {_E, 550, false}, 
 					Tristana = {_R, 550, false}, 
 					Draven = {_E, 1050, true}, 
 					Ahri = {_E, 975, true}, 
-					Alistar = {_W, 650, false}
+					Alistar = {_W, 650, false},
+					Rengar = {_E, 400, false}
 				}
 
 if not champions[myHero.charName] then return end
 
-local version = "1.0"
+local version = "1.0.1"
 local skillReady = false
 local skillRange = nil
 local myChampion = nil
+local AntiRengar = nil
 
 function OnLoad()
 	Menu()
@@ -60,6 +62,6 @@ function SkillCheck()
 end
 
 function Menu()
-	local AntiRengar = scriptConfig("Liquid AntiRengar", "AntiRengar")
+	AntiRengar = scriptConfig("Liquid AntiRengar", "AntiRengar")
 	AntiRengar:addParam("enabled", "Enabled", SCRIPT_PARAM_ONOFF, true)
 end
