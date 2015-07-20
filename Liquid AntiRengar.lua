@@ -58,8 +58,8 @@ function OnCreateObj(obj)
 end
 
 function CastPrediction(target)
-	local castPosition, hitChance, position = VPred:GetLineCastPosition(target, myChampion[5], myChampion[6], myChampion[2], myChampion[4], myHero, true)
-	if hitChance >= 2 and GetDistanceSqr(castPosition, myChampion[2]) then
+	local castPosition, hitChance, position = VPred:GetLineCastPosition(target, myChampion[5], myChampion[6], skillRange, myChampion[4], myHero, true)
+	if hitChance >= 2 and GetDistanceSqr(castPosition, skillRange) < skillRange*skillRange then
 		CastSpell(myChampion[1], castPosition.x, castPosition.z)
 	end
 end
