@@ -1,4 +1,4 @@
---Liquid AntiRengar Assembly, a script to automatically stop rengar leaping you with some specific champions.
+--Liquid AntiRengar Script, a script to automatically stop rengar leaping you with some specific champions.
 --Champion support: Vayne, Draven, Tristana, Ahri, Alistar
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add more champions.
