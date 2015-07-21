@@ -1,10 +1,3 @@
---Liquid AntiRengar, a script to automatically stop rengar leaping you with some specific champions.
---Champion support: Have a look at the table below.
---Thanks to: Brown (Helping me testing and champion ideas)
---To-Do: 	Add some other dashes, like Leblanc or Gnar.
---			Add more champions and options.
---Version: 1.08
-
 local version = "1.08"
 _G.UseUpdater = true
 
@@ -24,6 +17,13 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 				}
 
 if not champions[myHero.charName] then return end
+
+--Liquid AntiRengar, a script to automatically stop rengar leaping you with some specific champions.
+--Champion support: Have a look at the table below.
+--Thanks to: Brown (Helping me testing and champion ideas)
+--To-Do: 	Add some other dashes, like Leblanc or Gnar.
+--			Add more champions and options.
+--Version: 1.08
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
