@@ -1,4 +1,4 @@
-local version = "1.00"
+local version = "1.01"
 _G.UseUpdater = true
 
 --First check for the map
@@ -94,7 +94,7 @@ function OnTick()
 		SendMessageOnce("<b><font color=\"#6699FF\">SNOWBALL LANDED!!!</font></b>")
 	end
 	
-	if (aramShooter.enabled or (aramShooter.pressEnable and aramShooter.enableKey)) and target ~= nil then
+	if (aramShooter.enabled or (aramShooter.pressEnable and aramShooter.enableKey)) and target ~= nil and (myHero:CanUseSpell(summonerKey) == READY) then
 		CastPrediction(target)
 	end
 end
