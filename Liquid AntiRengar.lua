@@ -1,4 +1,4 @@
-local version = "1.13"
+local version = "1.14"
 _G.UseUpdater = true
 
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
@@ -8,17 +8,30 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 					Braum = {_E, 250, true, 2000, 0.25, 500}, --Not real values, just a test.
 					Draven = {_E, 1050, true, 1400, 0.28, 90}, 
 					FiddleSticks = {_Q, 575, false},
+					--Galio R
+					--Gragas R and E
 					--Janna Q : 1100, 900, 0.25, 120.
 					Janna = {_R, 725, false},
 					LeeSin = {_R, 375, false},
+					Lissandra = {_R, 550, false},
 					Lulu = {_W, 650, false},
 					Malzahar = {_R, 700, false},
 					Maokai = {_Q, 575, true, 1200, 0.5, 110},
+					--Poppy E
+					Quinn = {_E, 700, false},
 					Rammus = {_Q, 250, false},
+					--Shen E
+					--Skarner R
+					Singed = {_E, 150, false},
 					Syndra = {_E, 700, true, 2500, 0.25, 22.5},
+					Teemo = {_Q, 580, false},
 					Tristana = {_R, 550, false}, 
+					--Urgot R
 					Vayne = {_E, 550, false},
+					Warwick = {_R, 700, false},
 					XinZhao = {_R, 187.5, false}
+					--Yasuo 3rd Q.
+					--Zyra E
 				}
 
 if not champions[myHero.charName] then return end
@@ -28,7 +41,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.13
+--Version: 1.14
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -91,10 +104,10 @@ local skillRange, myChampion, antiRengar = nil, nil, nil
 
 function OnLoad()
 	VPred = VPrediction()
-	Menu()
-	print("Liquid AntiRengar v"..version.." loaded!")
 	myChampion = champions[myHero.charName]
+	Menu()
 	skillRange = myChampion[2]
+	print("Liquid AntiRengar v"..version.." loaded!")
 end
 
 function OnTick()
@@ -159,17 +172,21 @@ function SkillCheck()
 end
 
 function Menu()
-	antiRengar = scriptConfig("Liquid AntiRengar", "AntiRengar")
+	antiRengar = scriptConfig("Liquid AntiRengar", "AntiRengarFix")
+	antiRengar:addParam("info", "---- Your Skill is "..GetCorrectSkill(myChampion[1]).." ----", SCRIPT_PARAM_INFO, "")
 	antiRengar:addParam("enabled", "Always enabled", SCRIPT_PARAM_ONOFF, true)
 	antiRengar:addParam("pressEnable", "Enable on Press", SCRIPT_PARAM_ONOFF, false)
 	antiRengar:addParam("enableKey", "Enable Key", SCRIPT_PARAM_ONKEYDOWN, false, 32)
 	antiRengar:addParam("usePred", "Predict Skillshots (Slower)", SCRIPT_PARAM_ONOFF, false)
 	antiRengar:addParam("allyHelp", "Help allies", SCRIPT_PARAM_ONOFF, false)
-	--antiRengar:addParam("delayEnable", "Delay Skills", SCRIPT_PARAM_ONOFF, false)
-	antiRengar:addParam("delayTime", "Delay time (ms)", SCRIPT_PARAM_SLICE, 80, 0, 130, -1)
-	antiRengar:addParam("currentLife", "Current life to use (%)", SCRIPT_PARAM_SLICE, 50, 0, 100, -1)
+	antiRengar:addParam("delayTime", "Delay time (ms)", SCRIPT_PARAM_SLICE, 80, 0, 130, 0)
+	antiRengar:addParam("currentLife", "Current life to use (%)", SCRIPT_PARAM_SLICE, 65, 0, 100, 0)
 end
 
+function GetCorrectSkill(keyNumber)
+	local skills = {"Q", "W", "E", "R"}
+	return skills[keyNumber+1]
+end
 
 --Deprecated function.
 --[[function OnCreateObj(obj)
