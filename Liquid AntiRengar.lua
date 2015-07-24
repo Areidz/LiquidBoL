@@ -1,4 +1,4 @@
-local version = "1.14"
+local version = "1.15"
 _G.UseUpdater = true
 
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
@@ -29,9 +29,10 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 					--Urgot R
 					Vayne = {_E, 550, false},
 					Warwick = {_R, 700, false},
-					XinZhao = {_R, 187.5, false}
+					XinZhao = {_R, 187.5, false},
 					--Yasuo 3rd Q.
-					--Zyra E
+					Zac = {_R, 300, false},
+					Zyra = {_E, 1100, true, 1400, 0.5, 70}
 				}
 
 if not champions[myHero.charName] then return end
@@ -41,7 +42,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.14
+--Version: 1.15
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -136,7 +137,7 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 					else
 						DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
 					end
-				elseif myHero.charName == "Janna" or myHero.charName == "XinZhao" or myHero.charName == "Rammus" then
+				elseif myHero.charName == "Janna" or myHero.charName == "XinZhao" or myHero.charName == "Rammus" or myHero.charName == "Zac" then
 					DelayAction(function() CastSpell(myChampion[1]) end, antiRengar.delayTime*0.001)
 				else
 					DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
