@@ -96,8 +96,6 @@ if _G.UseUpdater then
 	end
 end
 
-require "VPrediction"
-
 local skillReady = false
 local skillRange, myChampion, antiRengar = nil, nil, nil
 
