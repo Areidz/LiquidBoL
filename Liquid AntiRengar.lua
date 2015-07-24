@@ -1,4 +1,4 @@
-local version = "1.14"
+local version = "1.16"
 _G.UseUpdater = true
 
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
@@ -8,20 +8,24 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 					Braum = {_E, 250, true, 2000, 0.25, 500}, --Not real values, just a test.
 					Draven = {_E, 1050, true, 1400, 0.28, 90}, 
 					FiddleSticks = {_Q, 575, false},
-					--Galio R
+					Galio = {_R, 600, false},
 					--Gragas R and E
 					--Janna Q : 1100, 900, 0.25, 120.
 					Janna = {_R, 725, false},
+					Jax = {_E, 187.5, false},
 					LeeSin = {_R, 375, false},
 					Lissandra = {_R, 550, false},
 					Lulu = {_W, 650, false},
 					Malzahar = {_R, 700, false},
 					Maokai = {_Q, 575, true, 1200, 0.5, 110},
+					Pantheon = {_W, 600, false},
 					--Poppy E
 					Quinn = {_E, 700, false},
 					Rammus = {_Q, 250, false},
+					Ryze = {_W, 600, false},
+					Shaco = {_R, 250, false},
 					--Shen E
-					--Skarner R
+					Skarner = {_R, 350, false},
 					Singed = {_E, 150, false},
 					Syndra = {_E, 700, true, 2500, 0.25, 22.5},
 					Teemo = {_Q, 580, false},
@@ -29,9 +33,10 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 					--Urgot R
 					Vayne = {_E, 550, false},
 					Warwick = {_R, 700, false},
-					XinZhao = {_R, 187.5, false}
+					XinZhao = {_R, 187.5, false},
 					--Yasuo 3rd Q.
-					--Zyra E
+					Zac = {_R, 300, false},
+					Zyra = {_E, 1100, true, 1400, 0.5, 70}
 				}
 
 if not champions[myHero.charName] then return end
@@ -41,7 +46,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.14
+--Version: 1.16
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -96,8 +101,6 @@ if _G.UseUpdater then
 	end
 end
 
-require "VPrediction"
-
 local skillReady = false
 local skillRange, myChampion, antiRengar = nil, nil, nil
 
@@ -138,7 +141,7 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 					else
 						DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
 					end
-				elseif myHero.charName == "Janna" or myHero.charName == "XinZhao" or myHero.charName == "Rammus" then
+				elseif myHero.charName == "Jax" or myHero.charName == "Galio" or myHero.charName == "Shaco" or myHero.charName == "Janna" or myHero.charName == "XinZhao" or myHero.charName == "Rammus" or myHero.charName == "Zac" then
 					DelayAction(function() CastSpell(myChampion[1]) end, antiRengar.delayTime*0.001)
 				else
 					DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
