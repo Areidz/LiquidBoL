@@ -4,7 +4,7 @@ _G.UseUpdater = true
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
 					Alistar = {_W, 650, false},
 					--Anivia Wall (Difficult)
-					Azir = {_R, 250, true, 2000, 0.25, 500}, --Not real values, just a test.
+					Azir = {_R, 250, true, 1400, 0.5, 700},
 					Braum = {_E, 250, true, 2000, 0.25, 500}, --Not real values, just a test.
 					Draven = {_E, 1050, true, 1400, 0.28, 90}, 
 					FiddleSticks = {_Q, 575, false},
