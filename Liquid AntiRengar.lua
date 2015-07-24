@@ -1,10 +1,10 @@
-local version = "1.08"
+local version = "1.12"
 _G.UseUpdater = true
 
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
 					Alistar = {_W, 650, false},
 					--Anivia Wall (Difficult)
-					--Azir R below life
+					Azir = {_R, 250, true, 2000, 0.25, 500}, --Not real values, just a test.
 					Draven = {_E, 1050, true, 1400, 0.28, 90}, 
 					FiddleSticks = {_Q, 575, false},
 					--Janna Q : 1100, 900, 0.25, 120.
@@ -23,7 +23,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.08
+--Version: 1.12
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -54,7 +54,7 @@ if DOWNLOADING_LIBS then return end
 
 local UPDATE_NAME = "Liquid AntiRengar"
 local UPDATE_HOST = "raw.github.com"
-local UPDATE_PATH = "/Areidz/LiquidBoL/master/Liquid%20AntiRengar.lua" .. "?rand=" .. math.random(1, 10000)
+local UPDATE_PATH = "/LiquidBoL/LiquidBoL/master/Liquid%20AntiRengar.lua" .. "?rand=" .. math.random(1, 10000)
 local UPDATE_FILE_PATH = SCRIPT_PATH..GetCurrentEnv().FILE_NAME
 local UPDATE_URL = "http://"..UPDATE_HOST..UPDATE_PATH
 
@@ -102,33 +102,37 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 			if antiRengar.allyHelp then
 				for i = 1, heroManager.iCount do
 					local ally = heroManager:getHero(i)
-					if ally.team == myHero.team and skillReady and not ally.dead and GetDistanceSqr(ally, endPos) < 250*250 and GetDistanceSqr(myHero, endPos) < (skillRange)*(skillRange) then
+					if ally.team == myHero.team and skillReady and not ally.dead and IsNotHealthy(ally) and GetDistanceSqr(ally, endPos) < 250*250 and GetDistanceSqr(myHero, endPos) < (skillRange)*(skillRange) then
 						if myChampion[3] then
 							if antiRengar.usePred then
-								CastPrediction(unit)
+								DelayAction(function() CastPrediction(unit) end, antiRengar.delayTime*0.001)
 							else
-								CastSpell(myChampion[1], unit.x, unit.z)
+								DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
 							end
 						else
-							CastSpell(myChampion[1], unit)
+							DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
 						end
 					end
 				end
-			elseif skillReady and GetDistanceSqr(myHero, endPos) < 250*250 then --Distance to be moving and still throw the ability
+			elseif skillReady and IsNotHealthy(myHero) and GetDistanceSqr(myHero, endPos) < 250*250 then --Distance to be moving and still throw the ability
 				if myChampion[3] then
 					if antiRengar.usePred then
-						CastPrediction(unit)
+						DelayAction(function() CastPrediction(unit) end, antiRengar.delayTime*0.001)
 					else
-						CastSpell(myChampion[1], unit.x, unit.z)
+						DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
 					end
 				elseif myHero.charName == "Janna" then
-					CastSpell(myChampion[1])
+					DelayAction(function() CastSpell(myChampion[1]) end, antiRengar.delayTime*0.001)
 				else
-					CastSpell(myChampion[1], unit)
+					DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
 				end
 			end
 		end
 	end
+end
+
+function IsNotHealthy(unit)
+	return (((unit.health/unit.maxHealth)*100) <= antiRengar.currentLife)
 end
 
 function CastPrediction(target)
@@ -156,6 +160,9 @@ function Menu()
 	antiRengar:addParam("enableKey", "Enable Key", SCRIPT_PARAM_ONKEYDOWN, false, 32)
 	antiRengar:addParam("usePred", "Predict Skillshots (Slower)", SCRIPT_PARAM_ONOFF, false)
 	antiRengar:addParam("allyHelp", "Help allies", SCRIPT_PARAM_ONOFF, false)
+	--antiRengar:addParam("delayEnable", "Delay Skills", SCRIPT_PARAM_ONOFF, false)
+	antiRengar:addParam("delayTime", "Delay time (ms)", SCRIPT_PARAM_SLICE, 80, 0, 130, -1)
+	antiRengar:addParam("currentLife", "Current life to use (%)", SCRIPT_PARAM_SLICE, 50, 0, 100, -1)
 end
 
 
