@@ -1,42 +1,43 @@
 local version = "1.17"
 _G.UseUpdater = true
 
-local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
-					Alistar = {_W, 650, false},
+--Champion: Skill, Range, Skillshot, Targeted, Speed, Delay, Width.
+local champions = {	Ahri = {_E, 975, true, false, 1500, 0.25, 100}, 
+					Alistar = {_W, 650, false, true},
 					--Anivia Wall (Difficult)
-					Azir = {_R, 250, true, 1400, 0.5, 700},
-					Braum = {_E, 250, true, math.huge, 0.25, 200},
-					Draven = {_E, 1050, true, 1400, 0.28, 90}, 
-					FiddleSticks = {_Q, 575, false},
-					Galio = {_R, 600, false},
+					Azir = {_R, 250, true, false, 1400, 0.5, 700},
+					Braum = {_E, 250, true, false, math.huge, 0.25, 200},
+					Draven = {_E, 1050, true, false, 1400, 0.28, 90}, 
+					FiddleSticks = {_Q, 575, false, true},
+					Galio = {_R, 600, false, false},
 					--Gragas R and E
 					--Janna Q : 1100, 900, 0.25, 120.
-					Janna = {_R, 725, false},
-					Jax = {_E, 187.5, false},
-					LeeSin = {_R, 375, false},
-					Lissandra = {_R, 550, false},
-					Lulu = {_W, 650, false},
-					Malzahar = {_R, 700, false},
-					Maokai = {_Q, 575, true, 1200, 0.5, 110},
-					Pantheon = {_W, 600, false},
+					Janna = {_R, 725, false, false},
+					Jax = {_E, 187.5, false, false},
+					LeeSin = {_R, 375, false, true},
+					Lissandra = {_R, 550, false, true},
+					Lulu = {_W, 650, false, true},
+					Malzahar = {_R, 700, false, true},
+					Maokai = {_Q, 575, true, false, 1200, 0.5, 110},
+					Pantheon = {_W, 600, false, true},
 					--Poppy E
-					Quinn = {_E, 700, false},
-					Rammus = {_Q, 250, false},
-					Ryze = {_W, 600, false},
-					Shaco = {_R, 250, false},
-					Shen = {_E, 500, true, 1600, 0.25, 150},
-					Skarner = {_R, 350, false},
-					Singed = {_E, 150, false},
-					Syndra = {_E, 700, true, 2500, 0.25, 22.5},
-					Teemo = {_Q, 580, false},
-					Tristana = {_R, 550, false}, 
+					Quinn = {_E, 700, false, true},
+					Rammus = {_Q, 250, false, false},
+					Ryze = {_W, 600, false, true},
+					Shaco = {_R, 250, false, false},
+					Shen = {_E, 500, true, false, 1600, 0.25, 150},
+					Skarner = {_R, 350, false, true},
+					Singed = {_E, 150, false, true},
+					Syndra = {_E, 700, true, false, 2500, 0.25, 22.5},
+					Teemo = {_Q, 580, false, true},
+					Tristana = {_R, 550, false, true}, 
 					--Urgot R
-					Vayne = {_E, 550, false},
-					Warwick = {_R, 700, false},
-					XinZhao = {_R, 187.5, false},
+					Vayne = {_E, 550, false, true},
+					Warwick = {_R, 700, false, true},
+					XinZhao = {_R, 187.5, false, false},
 					--Yasuo 3rd Q.
-					Zac = {_R, 300, false},
-					Zyra = {_E, 1100, true, 1400, 0.5, 70}
+					Zac = {_R, 300, false, false},
+					Zyra = {_E, 1100, true, false, 1400, 0.5, 70}
 				}
 
 if not champions[myHero.charName] then return end
@@ -141,7 +142,7 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 					else
 						DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
 					end
-				elseif myHero.charName == "Jax" or myHero.charName == "Galio" or myHero.charName == "Shaco" or myHero.charName == "Janna" or myHero.charName == "XinZhao" or myHero.charName == "Rammus" or myHero.charName == "Zac" then
+				elseif not myChampion[4] then
 					DelayAction(function() CastSpell(myChampion[1]) end, antiRengar.delayTime*0.001)
 				else
 					DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
@@ -156,7 +157,7 @@ function IsNotHealthy(unit)
 end
 
 function CastPrediction(target)
-	local castPosition, hitChance, position = VPred:GetLineCastPosition(target, myChampion[5], myChampion[6], skillRange, myChampion[4], myHero, true)
+	local castPosition, hitChance, position = VPred:GetLineCastPosition(target, myChampion[6], myChampion[7], skillRange, myChampion[5], myHero, true)
 	if hitChance >= 2 then
 		CastSpell(myChampion[1], castPosition.x, castPosition.z)
 	end
