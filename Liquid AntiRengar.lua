@@ -1,4 +1,4 @@
-local version = "1.16"
+local version = "1.17"
 _G.UseUpdater = true
 
 local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100}, 
@@ -24,7 +24,7 @@ local champions = {	Ahri = {_E, 975, true, 1500, 0.25, 100},
 					Rammus = {_Q, 250, false},
 					Ryze = {_W, 600, false},
 					Shaco = {_R, 250, false},
-					--Shen E
+					Shen = {_E, 500, true, 1600, 0.25, 150},
 					Skarner = {_R, 350, false},
 					Singed = {_E, 150, false},
 					Syndra = {_E, 700, true, 2500, 0.25, 22.5},
@@ -46,7 +46,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.16
+--Version: 1.17
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
