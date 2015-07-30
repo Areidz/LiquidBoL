@@ -1,4 +1,4 @@
-local version = "1.17"
+local version = "1.18"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Skillshot, Targeted, Speed, Delay, Width.
@@ -7,11 +7,14 @@ local champions = {	Ahri = {_E, 975, true, false, 1500, 0.25, 100},
 					--Anivia Wall (Difficult)
 					Azir = {_R, 250, true, false, 1400, 0.5, 700},
 					Braum = {_E, 250, true, false, math.huge, 0.25, 200},
-					Draven = {_E, 1050, true, false, 1400, 0.28, 90}, 
+					Draven = {_E, 1050, true, false, 1400, 0.28, 90},
+					--Elise E
+					Evelynn = {_R, 650, true, false, math.huge, 0.25, 250},
 					FiddleSticks = {_Q, 575, false, true},
 					Galio = {_R, 600, false, false},
 					--Gragas R and E
 					--Janna Q : 1100, 900, 0.25, 120.
+					Irelia = {_E, 425, false, true},
 					Janna = {_R, 725, false, false},
 					Jax = {_E, 187.5, false, false},
 					LeeSin = {_R, 375, false, true},
@@ -24,15 +27,19 @@ local champions = {	Ahri = {_E, 975, true, false, 1500, 0.25, 100},
 					Quinn = {_E, 700, false, true},
 					Rammus = {_Q, 250, false, false},
 					Ryze = {_W, 600, false, true},
+					Sejuani = {_R, 1175, true, false, 1600, 0.25, 110},
 					Shaco = {_R, 250, false, false},
 					Shen = {_E, 500, true, false, 1600, 0.25, 150},
 					Skarner = {_R, 350, false, true},
 					Singed = {_E, 150, false, true},
 					Syndra = {_E, 700, true, false, 2500, 0.25, 22.5},
 					Teemo = {_Q, 580, false, true},
+					Thresh = {_E, 400, true, false, 2000, 0.38, 180},
 					Tristana = {_R, 550, false, true}, 
-					--Urgot R
+					Urgot = {_R, 550, false, true},
+					Varus = {_R, 1100, true, false, 1950, 0.25, 120},
 					Vayne = {_E, 550, false, true},
+					Vladimir = {_W, 250, false, false},
 					Warwick = {_R, 700, false, true},
 					XinZhao = {_R, 187.5, false, false},
 					--Yasuo 3rd Q.
@@ -43,11 +50,11 @@ local champions = {	Ahri = {_E, 975, true, false, 1500, 0.25, 100},
 if not champions[myHero.charName] then return end
 
 --Liquid AntiRengar, a script to automatically stop rengar leaping you with some specific champions.
---Champion support: Have a look at the table below.
+--Champion support: Have a look at the table above.
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
---Version: 1.17
+--Version: 1.18
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -167,10 +174,17 @@ function GetTristanaRange()
 	return 550+7*myHero.level
 end
 
+function GetUrgotRange()
+	return 400+(myHero:GetSpellData(_R).level*150)
+end
+
 function SkillCheck()
 	skillReady = myHero:CanUseSpell(myChampion[1])
 	if myHero.charName == "Tristana" then
 		skillRange = GetTristanaRange()
+	end
+	if myHero.charName == "Urgot" then
+		skillRange = GetUrgotRange()
 	end
 end
 
