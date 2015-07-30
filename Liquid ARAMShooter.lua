@@ -1,10 +1,9 @@
-local version = "1.01"
+local version = "1.02"
 _G.UseUpdater = true
 
 --First check for the map
 if not (GetGame().map.shortName == "howlingAbyss" or 
-		GetGame().map.shortName == "butchersBridge" or 
-		GetGame().map.shortName == "unknown") then 
+		GetGame().map.shortName == "butchersBridge") then 
 	return 
 end
 
@@ -125,4 +124,3 @@ function CastPrediction(target)
 		CastSpell(summonerKey, castPosition.x, castPosition.z)
 	end
 end
-
