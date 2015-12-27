@@ -1,4 +1,4 @@
-local version = "1.02"
+local version = "1.03"
 _G.UseUpdater = true
 
 --First check for the map
@@ -17,7 +17,8 @@ function CheckSummoner(IGNName)
     return nil
 end
 
-local summonerKey = CheckSummoner("snowball")
+local summonerKey = CheckSummoner("snowball") or CheckSummoner("porothrow")
+
 if summonerKey == nil then return end
 
 --Autoupdater
