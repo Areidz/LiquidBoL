@@ -1,4 +1,4 @@
-local version = "1.03"
+local version = "1.04"
 _G.UseUpdater = true
 
 --First check for the map
@@ -101,8 +101,10 @@ end
 
 function Menu()
 	aramShooter = scriptConfig("Liquid ARAMShooter", "aramShooter")
-	aramShooter:addParam("enabled", "Always enabled", SCRIPT_PARAM_ONOFF, true)
-	aramShooter:addParam("pressEnable", "Enable on Press", SCRIPT_PARAM_ONOFF, false)
+	aramShooter:addParam("info", "Check Always enabled to aim the poro.", SCRIPT_PARAM_INFO, "")
+	aramShooter:addParam("enabled", "Always enabled", SCRIPT_PARAM_ONOFF, false)
+	aramShooter:addParam("info2", "Check Enable on Press and press the key to aim the poro.", SCRIPT_PARAM_INFO, "")
+	aramShooter:addParam("pressEnable", "Enable on Press", SCRIPT_PARAM_ONOFF, true)
 	aramShooter:addParam("enableKey", "Enable Key", SCRIPT_PARAM_ONKEYDOWN, false, 32)
 	aramShooter:addParam("notification", "Notify when landed", SCRIPT_PARAM_ONOFF, false)
 	aramShooter:addParam("hitChance", "VPrediction Hitchance", SCRIPT_PARAM_SLICE, 2, 1, 5, 0)
