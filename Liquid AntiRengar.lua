@@ -2,50 +2,67 @@ local version = "1.18"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Skillshot, Targeted, Speed, Delay, Width.
-local champions = {	Ahri = {_E, 975, true, false, 1500, 0.25, 100}, 
-					Alistar = {_W, 650, false, true},
-					--Anivia Wall (Difficult)
-					Azir = {_R, 250, true, false, 1400, 0.5, 700},
-					Braum = {_E, 250, true, false, math.huge, 0.25, 200},
-					Draven = {_E, 1050, true, false, 1400, 0.28, 90},
-					--Elise E
-					Evelynn = {_R, 650, true, false, math.huge, 0.25, 250},
-					FiddleSticks = {_Q, 575, false, true},
-					Galio = {_R, 600, false, false},
-					--Gragas R and E
-					--Janna Q : 1100, 900, 0.25, 120.
-					Irelia = {_E, 425, false, true},
-					Janna = {_R, 725, false, false},
-					Jax = {_E, 187.5, false, false},
-					LeeSin = {_R, 375, false, true},
-					Lissandra = {_R, 550, false, true},
-					Lulu = {_W, 650, false, true},
-					Malzahar = {_R, 700, false, true},
-					Maokai = {_Q, 575, true, false, 1200, 0.5, 110},
-					Pantheon = {_W, 600, false, true},
-					--Poppy E
-					Quinn = {_E, 700, false, true},
-					Rammus = {_Q, 250, false, false},
-					Ryze = {_W, 600, false, true},
-					Sejuani = {_R, 1175, true, false, 1600, 0.25, 110},
-					Shaco = {_R, 250, false, false},
-					Shen = {_E, 500, true, false, 1600, 0.25, 150},
-					Skarner = {_R, 350, false, true},
-					Singed = {_E, 150, false, true},
-					Syndra = {_E, 700, true, false, 2500, 0.25, 22.5},
-					Teemo = {_Q, 580, false, true},
-					Thresh = {_E, 400, true, false, 2000, 0.38, 180},
-					Tristana = {_R, 550, false, true}, 
-					Urgot = {_R, 550, false, true},
-					Varus = {_R, 1100, true, false, 1950, 0.25, 120},
-					Vayne = {_E, 550, false, true},
-					Vladimir = {_W, 250, false, false},
-					Warwick = {_R, 700, false, true},
-					XinZhao = {_R, 187.5, false, false},
-					--Yasuo 3rd Q.
-					Zac = {_R, 300, false, false},
-					Zyra = {_E, 1100, true, false, 1400, 0.5, 70}
-				}
+local champions = {	
+	Ahri = {_E, 975, true, false, 1500, 0.25, 100}, 
+	Alistar = {_W, 650, false, true},
+	--Anivia Wall (Difficult)
+	--Annie = {_Q, 500, false, true}, --if stun
+	--Ashe ULT
+	Azir = {_R, 250, true, false, 1400, 0.5, 700},
+	Braum = {_E, 250, true, false, math.huge, 0.25, 200},
+	--Caitlyn = {_E, 500, true, false,...}
+	--Chogath Q
+	Diana = {_E, 500, false, false},
+	Draven = {_E, 1050, true, false, 1400, 0.28, 90},
+	--Elise E
+	Evelynn = {_R, 650, true, false, math.huge, 0.25, 250},
+	FiddleSticks = {_Q, 575, false, true},
+	--Fizz = {_E, 800, true, false}, Shield
+	Galio = {_R, 600, false, false},
+	--Garen W Shield
+	--Gragas R and E
+	--Janna Q : 1100, 900, 0.25, 120.
+	Irelia = {_E, 425, false, true},
+	Janna = {_R, 725, false, false},
+	Jax = {_E, 187.5, false, false},
+	--Jayce E
+	--Jinx E on player position
+	--Leblanc E
+	LeeSin = {_R, 375, false, true},
+	Lissandra = {_R, 550, false, true},
+	Lulu = {_W, 650, false, true},
+	--Lux Q skillshot
+	Malzahar = {_R, 700, false, true},
+	Maokai = {_Q, 575, true, false, 1200, 0.5, 110},
+	--Monkeyking W
+	--Nami
+	Pantheon = {_W, 600, false, true},
+	--Poppy E
+	Quinn = {_E, 700, false, true},
+	Rammus = {_Q, 250, false, false},
+	--Riven W
+	Ryze = {_W, 600, false, true},
+	Sejuani = {_R, 1175, true, false, 1600, 0.25, 110},
+	Shaco = {_R, 250, false, false},
+	Shen = {_E, 500, true, false, 1600, 0.25, 150},
+	Skarner = {_R, 350, false, true},
+	Singed = {_E, 150, false, true},
+	Syndra = {_E, 700, true, false, 2500, 0.25, 22.5},
+	Teemo = {_Q, 580, false, true},
+	Thresh = {_E, 400, true, false, 2000, 0.38, 180},
+	Tristana = {_R, 550, false, true}, 
+	Urgot = {_R, 550, false, true},
+	Varus = {_R, 1100, true, false, 1950, 0.25, 120},
+	Vayne = {_E, 550, false, true},
+	--Velkoz E
+	Vladimir = {_W, 250, false, false},
+	Warwick = {_R, 700, false, true},
+	--Xerath E
+	XinZhao = {_R, 187.5, false, false},
+	--Yasuo 3rd Q.
+	Zac = {_R, 300, false, false},
+	Zyra = {_E, 1100, true, false, 1400, 0.5, 70}
+}
 
 if not champions[myHero.charName] then return end
 
@@ -54,6 +71,7 @@ if not champions[myHero.charName] then return end
 --Thanks to: Brown (Helping me testing and champion ideas)
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
+--			Add shields to autoshield on rengar's leap.
 --Version: 1.18
 
 local REQUIRED_LIBS = {
