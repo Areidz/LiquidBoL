@@ -1,4 +1,4 @@
-local version = "1.18"
+local version = "1.19"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Skillshot, Targeted, Speed, Delay, Width.
@@ -26,12 +26,13 @@ local champions = {
 	Janna = {_R, 725, false, false},
 	Jax = {_E, 187.5, false, false},
 	--Jayce E
-	--Jinx E on player position
+	Jinx = {_E, 900, true, false, 1750, 1.2, 20}, --Jinx E on player position
+	Kindred = {_R, 400, true, false, math.huge, 0.25, 500}, --Not tested
 	--Leblanc E
 	LeeSin = {_R, 375, false, true},
 	Lissandra = {_R, 550, false, true},
 	Lulu = {_W, 650, false, true},
-	--Lux Q skillshot
+	Lux = {_Q, 1175, true, false, 1200, 0.25, 70},
 	Malzahar = {_R, 700, false, true},
 	Maokai = {_Q, 575, true, false, 1200, 0.5, 110},
 	--Monkeyking W
@@ -40,7 +41,7 @@ local champions = {
 	--Poppy E
 	Quinn = {_E, 700, false, true},
 	Rammus = {_Q, 250, false, false},
-	--Riven W
+	Riven = {_W, 250, false, false}, --Riven W
 	Ryze = {_W, 600, false, true},
 	Sejuani = {_R, 1175, true, false, 1600, 0.25, 110},
 	Shaco = {_R, 250, false, false},
