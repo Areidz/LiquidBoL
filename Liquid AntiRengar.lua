@@ -11,6 +11,7 @@ local champions = {
 	Azir = {_R, 250, true, false, 1400, 0.5, 700},
 	Braum = {_E, 250, true, false, math.huge, 0.25, 200},
 	--Caitlyn = {_E, 500, true, false,...}
+	--Cassio R
 	--Chogath Q
 	Diana = {_E, 500, false, false},
 	Draven = {_E, 1050, true, false, 1400, 0.28, 90},
@@ -27,6 +28,7 @@ local champions = {
 	Jax = {_E, 187.5, false, false},
 	--Jayce E
 	Jinx = {_E, 900, true, false, 1750, 1.2, 20}, --Jinx E on player position
+	--Katarina wardjump?
 	Kindred = {_R, 400, true, false, math.huge, 0.25, 500}, --Not tested
 	--Leblanc E
 	LeeSin = {_R, 375, false, true},
@@ -73,7 +75,7 @@ if not champions[myHero.charName] then return end
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
 --			Add shields to autoshield on rengar's leap.
---Version: 1.18
+--Version: 1.19
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
