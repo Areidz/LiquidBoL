@@ -1,7 +1,8 @@
-local version = "1.19"
+local version = "1.20"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Skillshot, Targeted, Speed, Delay, Width.
+--Add a column to special cast as 3rd element, and a positibility to load a couple of spells.
 local champions = {	
 	Ahri = {_E, 975, true, false, 1500, 0.25, 100}, 
 	Alistar = {_W, 650, false, true},
@@ -37,12 +38,12 @@ local champions = {
 	Lux = {_Q, 1175, true, false, 1200, 0.25, 70},
 	Malzahar = {_R, 700, false, true},
 	Maokai = {_Q, 575, true, false, 1200, 0.5, 110},
-	--Monkeyking W
-	--Nami
+	Monkeyking = {_W, 250, false, false},
+	Nami = {_Q, 875, true, false, math.huge, 0.925, 162}, --Thanks to S1mple.
 	Pantheon = {_W, 600, false, true},
-	--Poppy E
+	Poppy = {_E, 525, false, true},
 	Quinn = {_E, 700, false, true},
-	Rammus = {_Q, 250, false, false},
+	Rammus = {_Q, 250, false, false}, --also W and E.
 	Riven = {_W, 250, false, false}, --Riven W
 	Ryze = {_W, 600, false, true},
 	Sejuani = {_R, 1175, true, false, 1600, 0.25, 110},
@@ -50,6 +51,7 @@ local champions = {
 	Shen = {_E, 500, true, false, 1600, 0.25, 150},
 	Skarner = {_R, 350, false, true},
 	Singed = {_E, 150, false, true},
+	Soraka = {_E, 925, true, false, 2000, 0.5, 25}, --Thanks to CooLow.
 	Syndra = {_E, 700, true, false, 2500, 0.25, 22.5},
 	Teemo = {_Q, 580, false, true},
 	Thresh = {_E, 400, true, false, 2000, 0.38, 180},
@@ -75,7 +77,7 @@ if not champions[myHero.charName] then return end
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
 --			Add shields to autoshield on rengar's leap.
---Version: 1.19
+--Version: 1.20
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
