@@ -1,4 +1,4 @@
-local version = "2.01"
+local version = "2.02"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Special Cast, Skillshot, Targeted, Speed, Delay, Width.
@@ -89,7 +89,7 @@ if not champions[myHero.charName] then return end
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
 --			Add shields to autoshield on rengar's leap.
---Version: 2.01
+--Version: 2.02
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -249,8 +249,10 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 							end
 						end
 						if myHero.charName == "Elise" then
-							if(myHero:GetSpellData(_E).name"EliseSpiderEInitial") then
+							if(myHero:GetSpellData(_E).name == "EliseHumanE") then
 								DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
+							elseif (myHero:GetSpellData(_E).name == "EliseSpiderEInitial") then
+								DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
 							end
 						end
 					end
