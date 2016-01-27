@@ -1,4 +1,4 @@
-local version = "2.00"
+local version = "2.01"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Special Cast, Skillshot, Targeted, Speed, Delay, Width.
@@ -89,7 +89,7 @@ if not champions[myHero.charName] then return end
 --To-Do: 	Add some other dashes, like Leblanc or Gnar.
 --			Add more champions and options.
 --			Add shields to autoshield on rengar's leap.
---Version: 2.00
+--Version: 2.01
 
 local REQUIRED_LIBS = {
 	["VPrediction"] = "https://raw.githubusercontent.com/Hellsing/BoL/master/common/VPrediction.lua"
@@ -190,14 +190,16 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 									DelayAction(function() CastSpell(myChampion[1], myHero.x, myHero.z) end, antiRengar.delayTime*0.001)
 								end
 							end
-							if myChampion[4] == FORMCHECK and skillReady then
+							if myChampion[4] == FORMCHECK and skillReady then  --Thanks to Nebelwolfi
 								if myHero.charName == "Jayce" then
-									--if(E name == Hammer)
-									--cast E on Enemy
+									if(myHero:GetSpellData(_E).name == "JayceThunderingBlow") then
+										DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
+									end
 								end
 								if myHero.charName == "Elise" then
-									--if(E name correct)
-									--cast E on Enemy
+									if(myHero:GetSpellData(_E).name"EliseSpiderEInitial") then
+										DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
+									end
 								end
 							end
 							if myChampion[4] == BUFFCHECK then
@@ -240,14 +242,16 @@ function OnNewPath(unit, startPos, endPos, isDash, dashSpeed, dashGravity, dashD
 							DelayAction(function() CastSpell(myChampion[1], myHero.x, myHero.z) end, antiRengar.delayTime*0.001)
 						end
 					end
-					if myChampion[4] == FORMCHECK and skillReady then
+					if myChampion[4] == FORMCHECK and skillReady then --Thanks to Nebelwolfi
 						if myHero.charName == "Jayce" then
-							--if(E name == Hammer)
-							--cast E on Enemy
+							if(myHero:GetSpellData(_E).name == "JayceThunderingBlow") then
+								DelayAction(function() CastSpell(myChampion[1], unit) end, antiRengar.delayTime*0.001)
+							end
 						end
 						if myHero.charName == "Elise" then
-							--if(E name correct)
-							--cast E on Enemy
+							if(myHero:GetSpellData(_E).name"EliseSpiderEInitial") then
+								DelayAction(function() CastSpell(myChampion[1], unit.x, unit.z) end, antiRengar.delayTime*0.001)
+							end
 						end
 					end
 					if myChampion[4] == BUFFCHECK then
