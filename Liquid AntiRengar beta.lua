@@ -1,4 +1,4 @@
-local version = "2.02"
+local version = "2.03"
 _G.UseUpdater = true
 
 --Champion: Skill, Range, Special Cast, Skillshot, Targeted, Speed, Delay, Width.
@@ -24,7 +24,7 @@ local champions = {
 	Braum = {_E, 250, NORMAL_CAST, SKILLSHOT_CAST, AIR_CAST, math.huge, 0.25, 200},
 	--Caitlyn = {_E, 500, true, true, false,...}
 	--Cassio R
-	Chogath {_Q, 950, NORMAL_CAST, SKILLSHOT_CAST, AIR_CAST, math.huge, 0.625, 87.5},
+	Chogath = {_Q, 950, NORMAL_CAST, SKILLSHOT_CAST, AIR_CAST, math.huge, 0.625, 87.5},
 	Diana = {_E, 500, NORMAL_CAST, DIRECT_CAST, AIR_CAST},
 	Draven = {_E, 1050, NORMAL_CAST, SKILLSHOT_CAST, AIR_CAST, 1400, 0.28, 90},
 	Elise = {_E, 1075, SPECIAL_CAST, FORMCHECK, 1600, 0.25, 55},
